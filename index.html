@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+       
+        body{
+            background-color: rgb(8, 3, 3);
+        }
+        h1{
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        .MyWactch{
+            top: 35%;
+            left: 5%;
+            position: fixed;
+            background-color: purple;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: rgba(243, 231, 231, 0.171) 0px 10px 50px;
+        }
+        span{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="MyWactch">
+        <h1>MY DIGITAL CLOCK</h1>
+        <span class="H"></span>
+        <span class="M"></span><br>
+        <span class="date"></span>
+    </div>
+    <script>
+        function myTime(){
+            var myDate = new Date();
+            var hr,min=(myDate.getMinutes()< 10) ? '0' +myDate.getMinutes() : myDate.getMinutes(),
+                sec = (myDate.getSeconds()<10)? "0" + myDate.getSeconds : myDate.getSeconds(),
+                m = (myDate.getHours()>=12)? "PM" :"AM";
+
+            if(myDate.getHours() == 0){
+                    hr = 12
+
+                }else if(myDate.getHours() > 12){
+                    hr = myDate.getHours()-12;
+
+                }else{
+                    hr = myDate.getHours();
+                }
+                var currentTime = hr + ":" + min + ":" + sec + ":";
+                document.getElementsByClassName("H")[0].innerHTML = currentTime;
+                document.getElementsByClassName("M")[0].innerHTML = m
+                var myDay = ["Sunday", "Monday",  "Tuesday",    "Wednesday", "Thrusday", "Friday","Satarday"];
+                var myMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November","December"];
+                var day = myDate.getDate();
+
+            var currentDate = myDay[myDate.getDay()]+ "," + myMonth[myDate.getMonth()] + day
+               document.getElementsByClassName("date")[0].innerHTML = currentDate
+        }
+        myTime();
+        setInterval(function(){
+            myTime();
+        },1000);
+    </script>
+</body>
+</html>
